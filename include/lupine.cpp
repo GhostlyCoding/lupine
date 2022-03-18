@@ -42,23 +42,21 @@ Lupine::Lupine(const char* name, int width, int height) {
     float vertexArray[vertices.size()];
     std::copy(vertices.begin(), vertices.end(), vertexArray);
 
-    glGenBuffers(1, &this->VBO);
-
     glGenVertexArrays(1, &this->VAO);
-    glBindVertexArray(VAO);
+    glGenBuffers(1, &this->VBO);
+    glGenBuffers(1, &this->EBO);
 
-    glGenBuffers(1, &this->VAO);
+    glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_DYNAMIC_DRAW);
 
-    glGenBuffers(1, &this->EBO);
-    glBindBuffer(GL_ARRAY_BUFFER, EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-    glEnableVertexAttribArray(0);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
-    glEnableVertexAttribArray(1);
+    glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     Handler handler;
 }
@@ -98,12 +96,9 @@ void Lupine::render() {
     for(int i=0; i < handler.vertices.size(); i++) {
         vertices[i] = handler.vertices[i];
     }
-    std::cout << "[";
     for(int i=0; i < handler.indices.size(); i++) {
         indices[i] = handler.indices[i];
-        std::cout << handler.indices[i] << ", ";
     }
-    std::cout << "]" << std::endl;
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
