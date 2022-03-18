@@ -23,14 +23,25 @@ public:
     int err;
     Lupine(const char* name, int width, int height);
     ~Lupine();
+    // input
     void registerKey(int key, const std::function<void()>& func);
     void unregisterKey(int key);
+    // game engine
     void processInput();
     void background(float r, float g, float b, float a);
     void use();
+    void render();
+    // handler passthrough functions
+    Triangle registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
+        glm::vec3 c1,glm::vec3 c2,glm::vec3 c3);
+    void unregisterTriangle(Triangle triangle);
 private:
     std::function<void()> keys[348];
     Shader shader;
     Handler handler;
     std::vector<float> vertices;
+    unsigned int VBO;
+    unsigned int VAO;
+    unsigned int EBO;
+    static void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 };

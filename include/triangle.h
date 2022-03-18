@@ -20,6 +20,9 @@ public:
         glm::vec3 c1,glm::vec3 c2,glm::vec3 c3);
 
     float* getVertices();
+    glm::vec3 center;
+    float scale;
+    int id;
 private:
     glm::vec3 p1;
     glm::vec3 p2;
@@ -27,6 +30,4 @@ private:
     glm::vec3 c1;
     glm::vec3 c2;
     glm::vec3 c3;
-    glm::vec3 center;
-    int scale;
 };
