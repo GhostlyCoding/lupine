@@ -44,21 +44,20 @@ Lupine::Lupine(const char* name, int width, int height) {
 
     glGenVertexArrays(1, &this->VAO);
     glGenBuffers(1, &this->VBO);
-    glGenBuffers(1, &this->EBO);
+    //glGenBuffers(1, &this->EBO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertexArray), vertexArray, GL_DYNAMIC_DRAW);
 
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    //glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3*sizeof(float)));
     glEnableVertexAttribArray(1);
 
-    Handler handler;
 }
 
 void Lupine::framebuffer_size_callback(GLFWwindow* window, int width, int height) {
@@ -89,23 +88,46 @@ void Lupine::processInput() {
 }
 
 void Lupine::render() {
-    handler.getVertices();
-    float vertices[handler.vertices.size()];
-    int indices[handler.indices.size()];
+    Handler::getInstance().getVertices();
+    if((Handler::getInstance().FLAG >> 0) & 1U) {
+        float vertices[Handler::getInstance().vertices.size()];
+        int indices[Handler::getInstance().indices.size()];
 
-    for(int i=0; i < handler.vertices.size(); i++) {
-        vertices[i] = handler.vertices[i];
-    }
-    for(int i=0; i < handler.indices.size(); i++) {
-        indices[i] = handler.indices[i];
+        for(int i=0; i < Handler::getInstance().vertices.size(); i++) {
+            vertices[i] = Handler::getInstance().vertices[i];
+        }
+
+        for(int i=0; i < Handler::getInstance().indices.size(); i++) {
+            indices[i] = Handler::getInstance().indices[i];
+        }
+
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
+        /*glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);*/
+        Handler::getInstance().FLAG &= ~(1UL << 0);
     }
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_DYNAMIC_DRAW);
+    glm::mat4 view = glm::mat4(1.0f);
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -20.0f));
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
+    int viewLoc = glGetUniformLocation(shader.ID, "view");
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    int projLoc = glGetUniformLocation(shader.ID, "projection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
     glBindVertexArray(VAO);
-    glDrawElements(GL_TRIANGLES, handler.indices.size(), GL_UNSIGNED_INT, 0);
+    for(int i=0; i < Handler::getInstance().indices.size()/3; i++){
+        glm::mat4 model = glm::mat4(1.0f);
+        model = glm::translate(model, Handler::getInstance().triangles[i].center);
+        model = glm::scale(model, glm::vec3(Handler::getInstance().triangles[i].scale));
+
+        int modelLoc = glGetUniformLocation(shader.ID, "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+
+        glDrawArrays(GL_TRIANGLES, i*3, 3);
+    }
     glBindVertexArray(0);
 }
 
@@ -117,8 +139,8 @@ void Lupine::background(float r, float g, float b, float a) {
 // handler passthroughs
 Triangle Lupine::registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
         glm::vec3 c1, glm::vec3 c2, glm::vec3 c3) {
-    return handler.registerTriangle(p1, p2, p3, c1, c2, c3);
+    return Handler::getInstance().registerTriangle(p1, p2, p3, c1, c2, c3);
 }
 void Lupine::unregisterTriangle(Triangle triangle) {
-    handler.unregisterTriangle(triangle);
+    Handler::getInstance().unregisterTriangle(triangle);
 }

@@ -14,6 +14,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 #include "triangle.h"
+#include "rectangle.h"
 #include "shader.h"
 #include "handler.h"
 
@@ -38,7 +39,6 @@ public:
 private:
     std::function<void()> keys[348];
     Shader shader;
-    Handler handler;
     std::vector<float> vertices;
     unsigned int VBO;
     unsigned int VAO;

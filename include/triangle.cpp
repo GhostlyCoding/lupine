@@ -12,16 +12,14 @@ Triangle::Triangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
     float av3 = (p1.z + p2.z + p3.z) / 3.0f;
     this->center = glm::vec3(av1, av2, av3);
 
-    std::cout << p3.x << std::endl;
-
     // translate points to the center
     glm::vec3 tp1 = p1 - center;
     glm::vec3 tp2 = p2 - center;
     glm::vec3 tp3 = p3 - center;
 
-    float dist1 = tp1.length();
-    float dist2 = tp2.length();
-    float dist3 = tp3.length();
+    float dist1 = glm::distance(center, p1);
+    float dist2 = glm::distance(center, p2);
+    float dist3 = glm::distance(center, p3);
 
     this->scale = std::max(std::max(dist1,dist2),dist3);
 

@@ -18,16 +18,17 @@
 
 class Handler {
 public:
-    Handler();
-
+    static Handler& getInstance();
     Triangle registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
         glm::vec3 c1,glm::vec3 c2,glm::vec3 c3);
     void unregisterTriangle(Triangle triangle);
     
     void getVertices();
 
+    std::vector<Triangle> triangles;
     std::vector<float> vertices;
     std::vector<int> indices;
+    unsigned int FLAG;
 private:
-    std::vector<Triangle> triangles;
+    Handler();
 };
