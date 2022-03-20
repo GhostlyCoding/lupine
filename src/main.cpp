@@ -1,4 +1,4 @@
-#include "../include/lupine.h"
+#include <lupine.h>
 
 int main() {
     const char* name = "name";
