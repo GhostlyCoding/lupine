@@ -1,11 +1,7 @@
 #pragma once
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 #include <iostream>
 #include <vector>
-#include <functional>
-#include <map>
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
