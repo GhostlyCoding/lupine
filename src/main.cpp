@@ -9,11 +9,11 @@ int main() {
 
     lupine.registerKey(GLFW_KEY_ESCAPE, [&lupine](){ glfwSetWindowShouldClose(lupine.window, true); });
 
-    /*lupine.registerTriangle(glm::vec3(0,0,0),glm::vec3(-3,-2,0),glm::vec3(3,-2,0),
-            glm::vec3(0,1,1),glm::vec3(1,1,1),glm::vec3(1,1,1));
-    lupine.registerTriangle(glm::vec3(1,-4,20),glm::vec3(-3,-2,0),glm::vec3(3,-2,0),
-            glm::vec3(0,1,1),glm::vec3(1,1,1),glm::vec3(1,1,1));*/
-    Rectangle rect(glm::vec3(-.5,-.5,0), 2, 2, glm::vec3(0, 40, 30), glm::vec3(1,1,1));
+    /*Triangle t(glm::vec3(0,0,0), glm::vec3(-2,0,0), glm::vec3(0,-2,0),
+            glm::vec3(1,1,1), glm::vec3(1,1,1), glm::vec3(1,1,1));*/
+    Rectangle rect(glm::vec3(-.5,-.5,0), 2, 2, glm::vec3(0, 0, 0), glm::vec3(1,1,1));
+    Triangle t(glm::vec3(0,0,0), glm::vec3(-2,0,0), glm::vec3(0,-2,0),
+            glm::vec3(1,1,1), glm::vec3(1,1,1), glm::vec3(1,1,1));
     while (!glfwWindowShouldClose(lupine.window)) {
         lupine.processInput();
 

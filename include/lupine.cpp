@@ -120,8 +120,8 @@ void Lupine::render() {
     glBindVertexArray(VAO);
     for(int i=0; i < Handler::getInstance().indices.size()/3; i++){
         glm::mat4 model = glm::mat4(1.0f);
-        model = glm::translate(model, Handler::getInstance().triangles[i].center);
-        model = glm::scale(model, glm::vec3(Handler::getInstance().triangles[i].scale));
+        model = glm::translate(model, Handler::getInstance().triangles[i]->center);
+        model = glm::scale(model, glm::vec3(Handler::getInstance().triangles[i]->scale));
 
         int modelLoc = glGetUniformLocation(shader.ID, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
@@ -137,10 +137,6 @@ void Lupine::background(float r, float g, float b, float a) {
 }
 
 // handler passthroughs
-Triangle Lupine::registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
-        glm::vec3 c1, glm::vec3 c2, glm::vec3 c3) {
-    return Handler::getInstance().registerTriangle(p1, p2, p3, c1, c2, c3);
-}
 void Lupine::unregisterTriangle(Triangle triangle) {
     Handler::getInstance().unregisterTriangle(triangle);
 }

@@ -19,4 +19,7 @@ public:
     Rectangle(glm::vec3 pos, float width, float height, glm::vec3 rot,
             glm::vec3 c1,glm::vec3 c2,glm::vec3 c3,glm::vec3 c4);
     Rectangle(glm::vec3 pos, float width, float height, glm::vec3 rot, glm::vec3 c);
+private:
+    Triangle triangle1;
+    Triangle triangle2;
 };

@@ -9,18 +9,21 @@ Handler& Handler::getInstance() {
     return instance;
 }
 
-Triangle Handler::registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
-        glm::vec3 c1, glm::vec3 c2, glm::vec3 c3) {
-    Triangle triangle(p1, p2, p3, c1, c2, c3);
-
-    triangle.id = triangles.size();
+void Handler::registerTriangle(Triangle* triangle){
+    triangle->id = triangles.size();
+    std::cout << "[";
+    for(int i=0; i < 18; i++) {
+        std::cout << triangle->getVertices()[i] << ", ";
+    }
+    std::cout << "]" << std::endl;
+    std::cout<<std::endl;
     triangles.push_back(triangle);
-    return triangle;
+    std::cout << "triangle" << std::endl;
 }
 
 void Handler::unregisterTriangle(Triangle triangle) {
     for(int i = 0; i < Handler::getInstance().triangles.size(); i++) {
-        if(Handler::getInstance().triangles[i].id == triangle.id) {
+        if(Handler::getInstance().triangles[i]->id == triangle.id) {
             triangles.erase(Handler::getInstance().triangles.begin() + i);
             break;
         }
@@ -32,7 +35,7 @@ void Handler::getVertices() {
     std::vector<int> indices1;
 
     for(int i = 0; i < Handler::getInstance().triangles.size(); i++) {
-        float* v = Handler::getInstance().triangles.at(i).getVertices();
+        float* v = Handler::getInstance().triangles.at(i)->getVertices();
         for(int j = 0; j < 18; j++) {
             vertices1.push_back(v[j]);
             if(j == 0) {
@@ -44,8 +47,18 @@ void Handler::getVertices() {
             }
         }
     }
-    if(vertices1 != Handler::getInstance().vertices) {
+    if(vertices1.size() != Handler::getInstance().vertices.size()) {
         Handler::getInstance().FLAG |= 1UL << 0;
+    } else {
+        bool same = true;
+        for(int i = 0; i < vertices1.size(); i++) {
+            if(vertices1[i] != Handler::getInstance().vertices[i]) {
+                same = false;
+            }
+        }
+        if(same == false) {
+            Handler::getInstance().FLAG |= 1UL << 0;
+        }
     }
 
     /*int deletedVertices = 0;

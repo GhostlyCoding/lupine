@@ -14,8 +14,10 @@ Rectangle::Rectangle(glm::vec3 pos, float width, float height, glm::vec3 rot,
     p3 = rotation * p3;
     glm::vec4 p4 = glm::vec4(pos.x+width, pos.y-height, pos.z,1);
     p4 = rotation * p4;
-    Handler::getInstance().registerTriangle(p1,p2,p3,c1,c2,c3);
-    Handler::getInstance().registerTriangle(p2,p4,p3,c2,c4,c3);
+    //triangle1 = Handler::getInstance().registerTriangle(p1,p2,p3,c1,c2,c3);
+    triangle1 = triangle1(p1,p2,p3,c1,c2,c3);
+    //triangle2 = Handler::getInstance().registerTriangle(p2,p4,p3,c2,c4,c3);
+    triangle2 = triangle2(p2,p4,p3,c2,c4,c3);
 }
 Rectangle::Rectangle(glm::vec3 pos, float width, float height, glm::vec3 rot, glm::vec3 c) {
     Rectangle(pos, width, height, rot, c, c, c, c);

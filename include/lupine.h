@@ -33,8 +33,6 @@ public:
     void use();
     void render();
     // handler passthrough functions
-    Triangle registerTriangle(glm::vec3 p1, glm::vec3 p2, glm::vec3 p3,
-        glm::vec3 c1,glm::vec3 c2,glm::vec3 c3);
     void unregisterTriangle(Triangle triangle);
 private:
     std::function<void()> keys[348];
