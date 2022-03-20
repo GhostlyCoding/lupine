@@ -18,7 +18,14 @@ int main() {
     while (!glfwWindowShouldClose(lupine.window)) {
         lupine.processInput();
 
-        lupine.background(124, 152, 194, 255);
+	//lupine.background(124, 152, 194, 255);
+	// Use new Colors!
+	// Color(int r, g, b, a)
+	// Color(int r, b, b, float a)
+	// Color(string hexCode, int a)
+	// Color(string hexCode, float a)
+	// hexCode can be UPPERCASE or lower case, with or without #
+	lupine.background(Color("#7C98C2", 255));
 
         lupine.use();
 

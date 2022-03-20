@@ -131,8 +131,8 @@ void Lupine::render() {
     glBindVertexArray(0);
 }
 
-void Lupine::background(float r, float g, float b, float a) {
-    glClearColor(r/255, g/255, b/255, a/255);
+void Lupine::background(Color col) {
+    glClearColor(col.r/255.0f, col.g/255.0f, col.b/255.0f, col.a/255.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 }
 

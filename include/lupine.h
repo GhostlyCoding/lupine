@@ -17,6 +17,7 @@
 #include "rectangle.h"
 #include "shader.h"
 #include "handler.h"
+#include "color.h"
 
 class Lupine {
 public:
@@ -29,7 +30,7 @@ public:
     void unregisterKey(int key);
     // game engine
     void processInput();
-    void background(float r, float g, float b, float a);
+    void background(Color col);
     void use();
     void render();
     // handler passthrough functions
