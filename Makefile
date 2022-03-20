@@ -45,7 +45,13 @@ lupine_libsom := $(lupine_libso).$(lupine_major)
 lupine_libsov := $(lupine_libso).$(lupine_version)
 lupine_liba := $(lupine_bindir)/lib$(lupine_dlname).a
 
-lupine: $(lupine_libso) $(lupine_liba) lupine_include
+lupine: $(lupine_libso) $(lupine_liba) lupine_include dirs
+
+dirs:
+	@mkdir -p $(lupine_sourcedir)
+	@mkdir -p $(lupine_objdir)
+	@mkdir -p $(lupine_bindir)
+	@mkdir -p $(lupine_includedir)
 
 lupine_include:
 	@echo "Copying header files..."
