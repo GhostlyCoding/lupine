@@ -1,0 +1,11 @@
+/home/ghostlycoding/dev/rust/lupine-app/lupine-test/target/debug/deps/bytemuck-8c366c76bab0d0a0.rmeta: /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/lib.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/allocation.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/zeroable.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/pod.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/contiguous.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/offset_of.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/transparent.rs
+
+/home/ghostlycoding/dev/rust/lupine-app/lupine-test/target/debug/deps/bytemuck-8c366c76bab0d0a0.d: /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/lib.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/allocation.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/zeroable.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/pod.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/contiguous.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/offset_of.rs /home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/transparent.rs
+
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/lib.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/allocation.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/zeroable.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/pod.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/contiguous.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/offset_of.rs:
+/home/ghostlycoding/.cargo/registry/src/github.com-1ecc6299db9ec823/bytemuck-1.8.0/src/transparent.rs:
